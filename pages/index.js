@@ -1,9 +1,12 @@
 import Head from "next/head"
 import stylesheet from 'styles/main.scss'
 
+import Nav from "../components/Nav"
 import Header from "../components/Header"
 import Main from "../components/Main"
 import Footer from "../components/Footer"
+
+
 
 class IndexPage extends React.Component {
     constructor(props) {
@@ -17,8 +20,7 @@ class IndexPage extends React.Component {
         }
         this.handleOpenArticle = this.handleOpenArticle.bind(this)
         this.handleCloseArticle = this.handleCloseArticle.bind(this)
-    }
-
+    }    
     componentDidMount() {
         this.timeoutId = setTimeout(() => {
             this.setState({ loading: "" })
@@ -68,19 +70,22 @@ class IndexPage extends React.Component {
             })
         }, 350)
     }
+  
     render() {
         return (
             <div className={`body ${this.state.loading} ${this.state.isArticleVisible ? "is-article-visible" : ""}`}>
                 <div>
+                
                     <Head>
-                        <title>Next.js Starter</title>
-                        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i" rel="stylesheet" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui"/>
+                        <title>John Evans - Web Designer and Developer</title>
                     </Head>
 
                     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
 
                     <div id="wrapper">
                         <Header onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} />
+                      
                         <Main
                             isArticleVisible={this.state.isArticleVisible}
                             timeout={this.state.timeout}
@@ -88,6 +93,7 @@ class IndexPage extends React.Component {
                             article={this.state.article}
                             onCloseArticle={this.handleCloseArticle}
                         />
+                        
                         <Footer timeout={this.state.timeout} />
                     </div>
 
@@ -98,4 +104,7 @@ class IndexPage extends React.Component {
     }
 }
 
+
+
 export default IndexPage
+
